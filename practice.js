@@ -1,19 +1,19 @@
 //We're in a job interview. Answer the following questions (try to not look at your notes unless you have to).
   // 1) What is the purpose of the 'this keyword'?
 
-      //Answer
+      //It allows us to access things in context.
 
   // 2) What are the four rules that govern what the 'this keyword' is bound to and describe each?
 
-      //Answer
+      //bind, call, add, apply
 
   // 3) What is the difference between call and apply?
 
-      //Answer
+      //call takes pretty much anything in, whereas apply requires an argument and an array
 
   // 4) What does .bind do?
 
-      //Answer
+      //it binds a function to a specific variable
 
 
 //Next Problem
@@ -23,10 +23,17 @@
   //email --> which is a string
   //getUsername --> which is a function that returns the current object's username property. *Don't use 'user' instead use the 'this' keyword*
 
-    //Code Here
+    var user = {
+        username: "IamTron",
+        email: "fortheusers@grid.com",
+        getUsername: function() {
+            return this.username;
+        }
+    };
 
 //Now, invoke the getUsername method and verify you got the username of the object and not anything else.
 
+    user.getUsername();
 
 //Next Problem
 
@@ -34,6 +41,19 @@
 // Write the function definitions which will make the following function invocations function properly.
 
   //Function Invocations Here
+function Car(make, model, year) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+    this.move = 0;
+    this.moveCar = function () {
+        this.move += 10;
+        return this.move;
+    };
+}
+
+
+
 
 var prius = new Car('Toyota', 'Prius', 2011);
 var mustang = new Car('Ford', 'Mustang', 2013);
@@ -69,7 +89,7 @@ var getMyUsername = function() {
  return this.username;
 };
 
-var userName = getMyUsername(); //Fix this
+var userName = getMyUsername.bind(myUser.username);//Fix this;
 
 //Above you're given an object, and  a function. What will the getUsername function return?
 //Note(no tests)
@@ -77,6 +97,7 @@ var userName = getMyUsername(); //Fix this
 
 //In the example above, what is the 'this keyword' bound to when getUsername runs?
 
-  //Answer Here
+  // it is bound to getMyUsername. That is why the function doesn't work.
+
 
 //Fix the getMyUsername invocation so that userName will be equal to 'iliketurtles'.
